@@ -5,15 +5,9 @@ video = VideoReader('./video/BallTossOut.mp4');
 positionX = [];
 positionY = [];
 j = 0;
-%numImgs = get(video, 'NumberOfFrames');
-%frames = read(video);
-%frameEspecific = read(video,21);
-%framGray = rgb2gray(frameEspecific);
-%imshow(framGray)
-
-%    Rmin = 1; Rmax = 4;
-%    [centersBright, radiiBright] = imfindcircles(framGray,[Rmin Rmax],'ObjectPolarity','bright');
-%    viscircles(centersBright, radiiBright,'Color','b');
+originX = 108.7795;
+originY = 240.0608;
+metro = 428;
     
 for i=10:29
     frameEspecific = read(video,i);
@@ -25,15 +19,15 @@ for i=10:29
     j = j + 1;
     if(m~=0)
         if(valueMax450==3)
-            positionX(j)=centersBright(2,1);
-            positionY(j)=centersBright(2,2);
+            positionX(j)=(centersBright(2,1) - originX)/metro;
+            positionY(j)=(originY - centersBright(2,2))/metro;
         else
-            positionX(j)=centersBright(1,1);
-            positionY(j)=centersBright(1,2);
+            positionX(j)=(centersBright(1,1) - originX)/metro;
+            positionY(j)=(originY - centersBright(1,2))/metro;
         end
     else
-        positionX(j)=291;
-        positionY(j)=97;
+        positionX(j)= (291 - originX)/metro;
+        positionY(j)= (originY - 97)/metro;
     end
 end
 
