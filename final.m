@@ -67,6 +67,11 @@ xlabel('Time')
 ylabel('Position Y')
 
 figure
+plot(time,velocity,'o')
+xlabel('Time')
+ylabel('Velocity')
+
+figure
 plot(time,energyK,'o')
 xlabel('Time')
 ylabel('Kinetic Energy')
