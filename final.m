@@ -2,6 +2,8 @@ clear all;
 clc;
 
 video = VideoReader('./video/BallTossOut.mp4');
+startReadFrames = 10;
+finishReadFrames = 29;
 positionX = [];
 positionY = [];
 time = [];
@@ -20,7 +22,7 @@ metro = 428;
 gravity = 9.8;
 mass = 1;
     
-for i=10:29
+for i=startReadFrames:finishReadFrames
     frameEspecific = read(video,i);
     framGray = rgb2gray(frameEspecific);
     Rmin = 1; Rmax = 4;
@@ -57,34 +59,52 @@ for i=10:29
 end
 
 figure
-plot(time,positionX,'o')
-xlabel('Time')
-ylabel('Position X')
-
-figure
-plot(time,positionY,'o')
-xlabel('Time')
-ylabel('Position Y')
-
-figure
-plot(time,velocity,'o')
-xlabel('Time')
-ylabel('Velocity')
-
-figure
-plot(time,energyK,'o')
-xlabel('Time')
-ylabel('Kinetic Energy')
-
-figure
-plot(time,energyP,'o')
-xlabel('Time')
-ylabel('Power Energy')
+plot(time,energy,'o', time,energyK,'o', time,energyP,'o')
+xlabel('Time (s)')
+ylabel('Energy (J)')
+legend({'Total Energy','Energy Kinetic', 'Power Energy'},'Location','southwest')
 
 figure
 plot(time,energy,'o')
-xlabel('Time')
-ylabel('Total Energy')
+xlabel('Time (s)')
+ylabel('Total Energy (J)')
+
+figure
+plot(time,energyP,'o')
+xlabel('Time (s)')
+ylabel('Power Energy (J)')
+
+figure
+plot(time,energyK,'o')
+xlabel('Time (s)')
+ylabel('Kinetic Energy (J)')
+
+figure
+plot(positionY,velocitySquad,'o')
+xlabel('Position Y (m)')
+ylabel('Velocity Squared (m^2/s^2)')
+
+figure
+plot(time,positionY,'o')
+xlabel('Time (s)')
+ylabel('Position Y (m)')
+
+figure
+plot(time,positionX,'o')
+xlabel('Time (s)')
+ylabel('Position X (m)')
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
